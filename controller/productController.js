@@ -4,9 +4,11 @@ const fs = require("fs");
 
 //-------------------------------------------
 router.get( "/" , (yeucau, trave) => {
-    data = fs.readFileSync("./html/products.html");
-    pageContent = data.toString();
-    trave.send(pageContent);
+    dssanpham = [
+        {TenSach: "Nguoi cung kho", MoTa: "Kho cung nguoi"},
+        {TenSach: "Than so hoc", MoTa: "So hoc than"},
+    ];
+    trave.render("products", {CacSanPham: dssanpham});
 });
 
 router.get( "/giadung" , (yeucau, trave) => {
