@@ -2,13 +2,30 @@ const  express = require("express");
 const  router = express.Router();
 const fs = require("fs");
 
+////// - Model
+const Product = require("../model/Product");
+
 //-------------------------------------------
-router.get( "/" , (yeucau, trave) => {
-    dssanpham = [
-        {TenSach: "Nguoi cung kho", MoTa: "Kho cung nguoi"},
-        {TenSach: "Than so hoc", MoTa: "So hoc than"},
-    ];
-    trave.render("products", {CacSanPham: dssanpham});
+router.get( "/" , productHome);
+async function productHome(yeucau, trave) {
+    try {
+        let dssp = await Product.find({});
+        console.log(dssp);
+        trave.render("products", {CacSanPham: dssp});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+router.get( "/create" , (yeucau, trave) => {
+    trave.render("newproduct");
+});
+
+router.post( "/create" , (yeucau, trave) => {
+    console.log("\n BODY: ", yeucau.body);
+    console.log("\n Params: ", yeucau.params);
+    console.log("\n Query: ", yeucau.query);
+    trave.render("oneproduct");
 });
 
 router.get( "/giadung" , (yeucau, trave) => {
