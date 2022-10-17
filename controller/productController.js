@@ -8,7 +8,17 @@ const Product = require("../model/Product");
 // Upload - https://www.npmjs.com/package/multer 
 
 const multer = require('multer');
-const upload = multer({dest: 'public/img'});
+// const upload = multer({dest: 'public/img'});
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname)
+    }
+  });
+const upload = multer({ storage: storage })
 
 //-------------------------------------------
 router.get( "/" , productHome);
