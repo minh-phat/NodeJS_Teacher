@@ -28,6 +28,8 @@ router.post( "/create" , (yeucau, trave) => {
     
     oneproduct = new Product(yeucau.body);
     oneproduct.save();
+    
+    trave.render("insertProduct");
     //trave.render("showProduct",  {sanpham: yeucau.body});
 });
 
