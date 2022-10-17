@@ -25,7 +25,10 @@ router.post( "/create" , (yeucau, trave) => {
     console.log("\n BODY: ", yeucau.body);
     console.log("\n Params: ", yeucau.params);
     console.log("\n Query: ", yeucau.query);
-    trave.render("oneproduct");
+    
+    oneproduct = new Product(yeucau.body);
+    oneproduct.save();
+    //trave.render("showProduct",  {sanpham: yeucau.body});
 });
 
 router.get( "/giadung" , (yeucau, trave) => {
