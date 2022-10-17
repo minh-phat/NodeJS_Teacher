@@ -18,7 +18,7 @@ async function productHome(yeucau, trave) {
 }
 
 router.get( "/create" , (yeucau, trave) => {
-    trave.render("newproduct");
+    trave.render("insertProduct");
 });
 
 router.post( "/create" , (yeucau, trave) => {
